@@ -1,0 +1,457 @@
+Step 9
+
+i - 
+MariaDB [COMPANY]> SELECT Fname, Lname, Address FROM EMPLOYEE,DEPARTMENT WHERE Dname='Research' AND Dnumber=Dno;
++----------+---------+--------------------------+
+| Fname    | Lname   | Address                  |
++----------+---------+--------------------------+
+| John     | Smith   | 731 Fondren, Houston, TX |
+| Franklin | Wong    | 638 Voss, Houston, TX    |
+| Joyce    | English | 5631 Rice, Houston, TX   |
+| Ramesh   | Narayan | 971 Fire Oak, Humble, TX |
++----------+---------+--------------------------+
+4 rows in set (0.00 sec)
+
+ii - 
+MariaDB [COMPANY]> SELECT * FROM EMPLOYEE WHERE (Salary BETWEEN 30000 AND 40000) AND Dno=5;
++----------+-------+---------+-----------+------------+--------------------------+------+----------+-----------+------+
+| Fname    | Minit | Lname   | Ssn       | BDATE      | Address                  | Sex  | Salary   | Super_ssn | Dno  |
++----------+-------+---------+-----------+------------+--------------------------+------+----------+-----------+------+
+| John     | B     | Smith   | 123456789 | 1955-01-09 | 731 Fondren, Houston, TX | M    | 30000.00 | 333445555 |    5 |
+| Franklin | T     | Wong    | 333445555 | 1945-12-08 | 638 Voss, Houston, TX    | M    | 40000.00 | 888665555 |    5 |
+| Ramesh   | K     | Narayan | 666884444 | 1952-09-15 | 971 Fire Oak, Humble, TX | M    | 38000.00 | 333445555 |    5 |
++----------+-------+---------+-----------+------------+--------------------------+------+----------+-----------+------+
+3 rows in set (0.00 sec)
+
+iii - 
+MariaDB [COMPANY]> SELECT Pnumber, Dnum, Lname, Address, Bdate FROM PROJECT,DEPARTMENT,EMPLOYEE WHERE Dnum=Dnumber AND Mgr_ssn=Ssn AND Plocation='Stafford';
++---------+------+---------+-------------------------+------------+
+| Pnumber | Dnum | Lname   | Address                 | Bdate      |
++---------+------+---------+-------------------------+------------+
+|      10 |    4 | Wallace | 291 Berry, Bellaire, TX | 1931-06-20 |
+|      30 |    4 | Wallace | 291 Berry, Bellaire, TX | 1931-06-20 |
++---------+------+---------+-------------------------+------------+
+2 rows in set (0.00 sec)
+
+iv - 
+MariaDB [COMPANY]> SELECT D.Dname, E.Lname, E.Fname, P.Pname FROM DEPARTMENT D, EMPLOYEE E, WORKS_ON W, PROJECT P WHERE D.Dnumber=E.Dno AND E.Ssn=W.Essn AND W.Pno=P.Pnumber
+    -> ORDER BY D.Dname, E.Lname, E.Fname;
++----------------+---------+----------+------------------+
+| Dname          | Lname   | Fname    | Pname            |
++----------------+---------+----------+------------------+
+| Administration | Jabbar  | Ahmad    | Computerization  |
+| Administration | Jabbar  | Ahmad    | Newbenefits      |
+| Administration | Wallace | Jennifer | Reorganization   |
+| Administration | Wallace | Jennifer | Newbenefits      |
+| Administration | Zelaya  | Alicia   | Newbenefits      |
+| Administration | Zelaya  | Alicia   | Computerization  |
+| Hardware       | Bays    | Bonnie   | InkjetPrinters   |
+| Hardware       | Best    | Alec     | InkjetPrinters   |
+| Hardware       | Brand   | Tom      | DatabaseSystems  |
+| Hardware       | Carter  | Chris    | DatabaseSystems  |
+| Hardware       | Freed   | Alex     | InkjetPrinters   |
+| Hardware       | Snedden | Sam      | InkjetPrinters   |
+| Hardware       | Vile    | Andy     | DatabaseSystems  |
+| Hardware       | Vos     | Jenny    | DatabaseSystems  |
+| Hardware       | Wallis  | Evan     | DatabaseSystems  |
+| Hardware       | Zell    | Josh     | DatabaseSystems  |
+| Headquarters   | Borg    | James    | Reorganization   |
+| Research       | English | Joyce    | ProductX         |
+| Research       | English | Joyce    | ProductY         |
+| Research       | Narayan | Ramesh   | ProductZ         |
+| Research       | Smith   | John     | ProductX         |
+| Research       | Smith   | John     | ProductY         |
+| Research       | Wong    | Franklin | ProductZ         |
+| Research       | Wong    | Franklin | Computerization  |
+| Research       | Wong    | Franklin | ProductY         |
+| Research       | Wong    | Franklin | Reorganization   |
+| Sales          | Bacher  | Red      | OperatingSystems |
+| Sales          | Bacher  | Red      | DatabaseSystems  |
+| Sales          | Bacher  | Red      | Middleware       |
+| Sales          | Drew    | Naveen   | OperatingSystems |
+| Sales          | Hall    | Sammy    | OperatingSystems |
+| Sales          | Head    | Arnold   | DatabaseSystems  |
+| Sales          | Jarvis  | Jill     | InkjetPrinters   |
+| Sales          | King    | Billie   | InkjetPrinters   |
+| Sales          | King    | Ray      | InkjetPrinters   |
+| Sales          | Kramer  | Jon      | LaserPrinters    |
+| Sales          | Leslie  | Lyle     | InkjetPrinters   |
+| Sales          | Pataki  | Helga    | Middleware       |
+| Sales          | Reedy   | Carl     | OperatingSystems |
+| Sales          | Small   | Gerald   | OperatingSystems |
+| Software       | Ball    | Nandita  | LaserPrinters    |
+| Software       | Chase   | Jeff     | Middleware       |
+| Software       | Grace   | Kim      | Middleware       |
+| Software       | James   | Jared    | OperatingSystems |
+| Software       | James   | John     | LaserPrinters    |
+| Software       | Jones   | Jon      | OperatingSystems |
+| Software       | Knight  | Brad     | OperatingSystems |
+| Software       | Mark    | Justin   | OperatingSystems |
++----------------+---------+----------+------------------+
+48 rows in set (0.00 sec)
+
+Step 10
+
+c - 
+MariaDB [COMPANY]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| university         |
++--------------------+
+7 rows in set (0.00 sec)
+
+
+Step 12b & 13a (CREATE TABLE STATEMENTS and DESCRIBES outputs) - 
+
+
+CREATE TABLE STUDENT
+(
+Name VARCHAR(30) NOT NULL,
+Student_number INTEGER(5) NOT NULL,
+Class INTEGER(5) NOT NULL,
+Major VARCHAR(20), 
+
+PRIMARY KEY (Student_number)
+);
+
+MariaDB [university]> DESCRIBE STUDENT
+    -> ;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| Name           | varchar(30) | NO   |     | NULL    |       |
+| Student_number | int(5)      | NO   | PRI | NULL    |       |
+| Class          | int(5)      | NO   |     | NULL    |       |
+| Major          | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+
+
+CREATE TABLE COURSE
+(
+Course_name VARCHAR(15) NOT NULL,
+Course_number INTEGER(4) NOT NULL,
+Credit_hours INTEGER(2),
+Department VARCHAR(15) NOT NULL,
+
+PRIMARY KEY (Course_number)
+);
+
+MariaDB [university]> DESCRIBE COURSE;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| Course_name   | varchar(15) | NO   |     | NULL    |       |
+| Course_number | int(4)      | NO   | PRI | NULL    |       |
+| Credit_hours  | int(2)      | YES  |     | NULL    |       |
+| Department    | varchar(15) | NO   |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+
+
+CREATE TABLE PREREQUISITE
+(
+PCourse_number INTEGER(4) NOT NULL,
+Prerequisite_number INTEGER(2) NOT NULL,
+
+PRIMARY KEY (Prerequisite_number, PCourse_number),
+FOREIGN KEY (PCourse_number) REFERENCES COURSE(Course_number)
+);
+
+MariaDB [university]> DESCRIBE PREREQUISITE
+    -> ;
++---------------------+--------+------+-----+---------+-------+
+| Field               | Type   | Null | Key | Default | Extra |
++---------------------+--------+------+-----+---------+-------+
+| PCourse_number      | int(4) | NO   | PRI | NULL    |       |
+| Prerequisite_number | int(2) | NO   | PRI | NULL    |       |
++---------------------+--------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+
+
+CREATE TABLE SECTION
+(
+SCourse_number INTEGER(4) NOT NULL,
+Section_Identifier INTEGER(2) NOT NULL,
+Semester VARCHAR(10),
+Year INTEGER(4),
+Instructor VARCHAR(30),
+
+PRIMARY KEY (Section_Identifier, SCourse_number),
+FOREIGN KEY (SCourse_number) REFERENCES COURSE(Course_number)
+);
+
+MariaDB [university]> DESCRIBE SECTION;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| SCourse_number     | int(4)      | NO   | PRI | NULL    |       |
+| Section_Identifier | int(2)      | NO   | PRI | NULL    |       |
+| Semester           | varchar(10) | YES  |     | NULL    |       |
+| Year               | int(4)      | YES  |     | NULL    |       |
+| Instructor         | varchar(30) | YES  |     | NULL    |       |
++--------------------+-----
+
+
+
+CREATE TABLE GRADE_REPORT
+(
+Report_SN INTEGER(5) NOT NULL,
+Report_SI INTEGER(2) NOT NULL,
+Grade VARCHAR(2),
+
+PRIMARY KEY(Report_SN, Report_SI),
+FOREIGN KEY(Report_SN) REFERENCES STUDENT(Student_number),
+FOREIGN KEY(Report_SI) REFERENCES SECTION(Section_Identifier)
+);
+
+MariaDB [university]> DESCRIBE GRADE_REPORT
+    -> ;
++-----------+------------+------+-----+---------+-------+
+| Field     | Type       | Null | Key | Default | Extra |
++-----------+------------+------+-----+---------+-------+
+| Report_SN | int(5)     | NO   | PRI | NULL    |       |
+| Report_SI | int(2)     | NO   | PRI | NULL    |       |
+| Grade     | varchar(2) | YES  |     | NULL    |       |
++-----------+------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+Step 14 & 15 (INSERT and SELECT * output)
+
+
+INSERT INTO STUDENT VALUES
+('Smith', '17', '1', 'CS'),
+('Brown', '8', '2', 'CS');
+
+MariaDB [university]> SELECT * FROM STUDENT;
++-------+----------------+-------+-------+
+| Name  | Student_number | Class | Major |
++-------+----------------+-------+-------+
+| Brown |              8 |     2 | CS    |
+| Smith |             17 |     1 | CS    |
++-------+----------------+-------+-------+
+2 rows in set (0.00 sec)
+
+
+INSERT INTO COURSE VALUES
+('Intro to Computer Science', '1310', '4', 'CS'),
+('Data Structures', '3320', '4', 'CS'),
+('Discrete Mathmatics', '2410', '3', 'MATH'),
+('Database', '3380', '3', 'CS');
+
+MariaDB [university]> SELECT * FROM COURSE;
++-----------------+---------------+--------------+------------+
+| Course_name     | Course_number | Credit_hours | Department |
++-----------------+---------------+--------------+------------+
+| Intro to Comput |          1310 |            4 | CS         |
+| Discrete Mathma |          2410 |            3 | MATH       |
+| Data Structures |          3320 |            4 | CS         |
+| Database        |          3380 |            3 | CS         |
++-----------------+---------------+--------------+------------+
+4 rows in set (0.00 sec)
+
+
+INSERT INTO SECTION VALUES
+('2410', '85', 'Fall', '07', 'King'),
+('1310', '92', 'Fall', '07', 'Anderson'), 
+('3320', '102', 'Spring', '08', 'Knuth'),
+('2410', '112', 'Fall', '08', 'Chang'),
+('1310', '119', 'Fall', '08', 'Anderson'),
+('3380', '135', 'Fall', '08', 'Stone');
+
+MariaDB [university]> SELECT * FROM SECTION;
++----------------+--------------------+----------+------+------------+
+| SCourse_number | Section_Identifier | Semester | Year | Instructor |
++----------------+--------------------+----------+------+------------+
+|           2410 |                 85 | Fall     |    7 | King       |
+|           1310 |                 92 | Fall     |    7 | Anderson   |
+|           3320 |                102 | Spring   |    8 | Knuth      |
+|           2410 |                112 | Fall     |    8 | Chang      |
+|           1310 |                119 | Fall     |    8 | Anderson   |
+|           3380 |                135 | Fall     |    8 | Stone      |
++----------------+--------------------+----------+------+------------+
+6 rows in set (0.00 sec)
+
+
+INSERT INTO PREREQUISITE VALUES
+('3380', '3320'),
+('3380', '2420'),
+('3320', '1310');
+
+MariaDB [university]> SELECT * FROM PREREQUISITE
+    -> ;
++----------------+---------------------+
+| PCourse_number | Prerequisite_number |
++----------------+---------------------+
+|           3320 |                1310 |
+|           3380 |                2420 |
+|           3380 |                3320 |
++----------------+---------------------+
+3 rows in set (0.00 sec)
+
+INSERT INTO GRADE_REPORT VALUES
+('17', '112', 'B'),
+('17', '119', 'C'),
+('8', '85', 'A'),
+('8', '92', 'A'),
+('8', '102', 'B'),
+('8', '135', 'A');
+
+MariaDB [university]> SELECT * FROM GRADE_REPORT;
++-----------+-----------+-------+
+| Report_SN | Report_SI | Grade |
++-----------+-----------+-------+
+|         8 |        85 | A     |
+|         8 |        92 | A     |
+|         8 |       102 | B     |
+|         8 |       135 | A     |
+|        17 |       112 | B     |
+|        17 |       119 | C     |
++-----------+-----------+-------+
+6 rows in set (0.00 sec)
+
+
+PART 2:
+
+1b - 
+
+i.
+
+MariaDB [university]> SELECT Name FROM STUDENT WHERE Class = '1' and Major = 'CS';
++-------+
+| Name  |
++-------+
+| Smith |
++-------+
+1 row in set (0.00 sec)
+
+
+ii.
+
+MariaDB [university]> SELECT DISTINCT Course_name FROM COURSE, SECTION WHERE Course_number = SCourse_number AND Instructor = 'Anderson';
++-----------------+
+| Course_name     |
++-----------------+
+| Intro to Comput |
++-----------------+
+1 row in set (0.01 sec)
+
+
+iii.
+
+MariaDB [university]> SELECT SCourse_number, Semester, Year, Name FROM SECTION, GRADE_REPORT, STUDENT WHERE
+    -> Section_Identifier = Report_SI AND Report_SN = Student_number AND Instructor = 'Anderson' ORDER BY Year DESC, SCourse_number ASC;
++----------------+----------+------+-------+
+| SCourse_number | Semester | Year | Name  |
++----------------+----------+------+-------+
+|           1310 | Fall     |    8 | Smith |
+|           1310 | Fall     |    7 | Brown |
++----------------+----------+------+-------+
+2 rows in set (0.00 sec)
+
+
+iv.
+
+MariaDB [university]> SELECT Name, Course_Name, Course_Number, Credit_hours, Semester, Year, Grade FROM STUDENT, GRADE_REPORT, SECTION, COURSE WHERE
+    -> Class = '2' AND Major = 'CS' AND Student_number = Report_SN AND Report_SI = Section_identifier AND SCourse_number = Course_number;
++-------+-----------------+---------------+--------------+----------+------+-------+
+| Name  | Course_Name     | Course_Number | Credit_hours | Semester | Year | Grade |
++-------+-----------------+---------------+--------------+----------+------+-------+
+| Brown | Discrete Mathma |          2410 |            3 | Fall     |    7 | A     |
+| Brown | Intro to Comput |          1310 |            4 | Fall     |    7 | A     |
+| Brown | Data Structures |          3320 |            4 | Spring   |    8 | B     |
+| Brown | Database        |          3380 |            3 | Fall     |    8 | A     |
++-------+-----------------+---------------+--------------+----------+------+-------+
+4 rows in set (0.00 sec)
+
+
+Step 2 c - 
+
+i.
+
+MariaDB [COMPANY]> SELECT DISTINCT E.Fname, E.Lname FROM EMPLOYEE E, DEPENDENT D
+
+    ->  WHERE E.Sex = D.Sex;
++----------+---------+
+| Fname    | Lname   |
++----------+---------+
+| Jared    | James   |
+| Jon      | Jones   |
+| Justin   | Mark    |
+| Brad     | Knight  |
+| John     | Smith   |
+| Evan     | Wallis  |
+| Josh     | Zell    |
+| Andy     | Vile    |
+| Tom      | Brand   |
+| Jenny    | Vos     |
+| Chris    | Carter  |
+| Kim      | Grace   |
+| Jeff     | Chase   |
+| Franklin | Wong    |
+| Alex     | Freed   |
+| Bonnie   | Bays    |
+| Alec     | Best    |
+| Sam      | Snedden |
+| Joyce    | English |
+| John     | James   |
+| Nandita  | Ball    |
+| Bob      | Bender  |
+| Jill     | Jarvis  |
+| Kate     | King    |
+| Lyle     | Leslie  |
+| Billie   | King    |
+| Jon      | Kramer  |
+| Ray      | King    |
+| Gerald   | Small   |
+| Arnold   | Head    |
+| Helga    | Pataki  |
+| Naveen   | Drew    |
+| Carl     | Reedy   |
+| Sammy    | Hall    |
+| Red      | Bacher  |
+| Ramesh   | Narayan |
+| James    | Borg    |
+| Jennifer | Wallace |
+| Ahmad    | Jabbar  |
+| Alicia   | Zelaya  |
++----------+---------+
+40 rows in set (0.00 sec)
+
+
+ii.
+
+MariaDB [COMPANY]> SELECT DISTINCT E.Fname, E.Lname FROM EMPLOYEE AS E, EMPLOYEE
+ AS S WHERE S.Fname = 'Franklin' AND S.Lname = 'Wong' AND S.Ssn = E.Super_ssn;
++--------+---------+
+| Fname  | Lname   |
++--------+---------+
+| Jared  | James   |
+| John   | Smith   |
+| Joyce  | English |
+| Ramesh | Narayan |
++--------+---------+
+4 rows in set (0.00 sec)
+
+
+iii.
+
+MariaDB [COMPANY]> SELECT Fname, Lname FROM EMPLOYEE, WORKS_ON, PROJECT WHERE Dno = '5' AND Pno = Pnumber AND Essn = Ssn AND Pname = 'ProductX' AND Hours>='10';
++-------+---------+
+| Fname | Lname   |
++-------+---------+
+| John  | Smith   |
+| Joyce | English |
++-------+---------+
+2 rows in set (0.00 sec)
